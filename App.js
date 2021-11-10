@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {View, Text, Button, StyleSheet, Pressable, Alert} from 'react-native';
+import {View, Text, Button, StyleSheet, Pressable} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 
@@ -14,10 +14,7 @@ function HomeScreen({navigation: {navigate}}) {
 
 function ModalScreen() {
   return (
-    <Pressable
-      onPress={() => {
-        Alert.alert('Not working', ':(');
-      }}
+    <View
       style={{
         flex: 1,
         alignItems: 'center',
@@ -25,13 +22,19 @@ function ModalScreen() {
         backgroundColor: 'white',
       }}>
       <Text>Modal Screen</Text>
-    </Pressable>
+    </View>
   );
 }
 
-function ModalOverlay() {
+function ModalOverlay({navigation: {goBack}}) {
   return (
-    <View style={[StyleSheet.absoluteFillObject, {backgroundColor: 'red'}]} />
+    <Pressable
+      onPress={goBack}
+      style={[
+        StyleSheet.absoluteFillObject,
+        {backgroundColor: 'rgba(0,0,0,0.7)'},
+      ]}
+    />
   );
 }
 
